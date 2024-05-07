@@ -1,0 +1,30 @@
+<header>
+  <button (click)="addEmployeeBtn()">ADD EMPLOYEE</button>
+  <div class="control-block">
+    <mat-icon class="header-icon" (click)="logout()">logout</mat-icon>
+    <mat-icon class="header-icon" routerLink="/login">account_circle</mat-icon>
+    <h2 class="username">{{username}}</h2>
+  </div>
+  <input [(ngModel)]="searchText" type="text" placeholder="FullName" (input)="searchEmployee()">
+</header>
+
+<div *ngIf="isLoaded && filteredEmployees.length > 0" class="main">
+  <div *ngFor="let employee of filteredEmployees" class="card">
+    <div class="content">
+      <h1>{{employee.fullName}}</h1>
+      <h2>{{employee.company}}</h2>
+      <h2>{{employee.salary}}$</h2>
+    </div>
+
+      <div class="controls">
+        <div class="edit" (click)="editEmployeeBtn(employee.id)">
+          <mat-icon class="control-text">edit</mat-icon>
+        </div>
+        <div class="delete" (click)="delete(employee.id)">
+          <mat-icon class="control-text">delete</mat-icon>
+        </div>
+      </div>
+
+  </div>
+</div>
+

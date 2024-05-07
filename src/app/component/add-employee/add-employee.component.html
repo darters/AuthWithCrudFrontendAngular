@@ -1,0 +1,31 @@
+<script src="add-employee.component.ts"></script>
+<mat-icon (click)="closeDialog()">close</mat-icon>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="input-group">
+    <h1>Full Name</h1>
+    <input formControlName="fullName" placeholder="FULL NAME">
+    <div class="textError" *ngIf="form.get('fullName')?.invalid && (form.get('fullName')?.dirty || form.get('fullName')?.touched)">
+      <span *ngIf="form.get('fullName')?.errors?.['required']">Full name is required to fill in</span>
+      <span *ngIf="form.get('fullName')?.errors?.['minlength' || 'maxlength']">Full name length must be more than 10 and less than 40</span>
+    </div>
+  </div>
+  <div class="input-group">
+    <h1>Salary</h1>
+    <input formControlName="salary" placeholder="SALARY:">
+    <div class="textError" *ngIf="form.get('salary')?.invalid && (form.get('salary')?.dirty || form.get('salary')?.touched)">
+      <span *ngIf="form.get('salary')?.errors?.['required']">Salary is required to fill in</span>
+      <span *ngIf="form.get('salary')?.errors?.['minlength'] ||
+      form.get('salary')?.errors?.['maxlength'] || form.get('salary')?.errors?.['pattern']">Salary length must be more than 2 less than 10, and contain only int</span>
+    </div>
+  </div>
+  <div class="input-group">
+    <h1>Company</h1>
+    <input formControlName="company" placeholder="COMPANY:">
+      <div class="textError" *ngIf="form.get('company')?.invalid && (form.get('company')?.dirty || form.get('company')?.touched)">
+        <span *ngIf="form.get('company')?.errors?.['required']">Company name is required to fill in</span>
+        <span *ngIf="form.get('company')?.errors?.['minlength'] || form.get('company')?.errors?.['maxlength']">Company name length must be more than 2 and less than 30</span>
+      </div>
+  </div>
+  <button [disabled]="form.invalid" type="submit">ADD</button>
+</form>
+

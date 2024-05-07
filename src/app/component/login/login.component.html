@@ -1,0 +1,23 @@
+<div class="main">
+  <form [formGroup]="form">
+    <div class="form-container">
+      <h1>LOGIN</h1>
+      <div class="input-group">
+      <input formControlName="email" placeholder="Email">
+      <div class="textError" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+        <span *ngIf="form.get('email')?.errors?.['required']">Email is required to fill in</span>
+        <span *ngIf="form.get('email')?.errors?.['email']">Invalid email format</span>
+      </div>
+      </div>
+    <div class="input-group">
+      <input formControlName="password" placeholder="Password">
+      <div class="textError" *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || form.get('password')?.dirty)">
+        <span *ngIf="form.get('password')?.errors?.['required']">Password is required to fill in</span>
+        <span *ngIf="form.get('password')?.errors?.['minlength']">Password must be more than 6 characters</span>
+      </div>
+    </div>
+      <button [disabled]="form.invalid" type="submit" (click)="submit()">Login</button>
+      <a (click)="register()">Registration</a>
+    </div>
+  </form>
+</div>
